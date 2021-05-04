@@ -1,0 +1,22 @@
+for (String key: edition.keySet()) {
+
+                try {
+                    Scanner sc= new Scanner(a);
+                    StringBuffer sb = new StringBuffer();
+
+                while (sc.hasNextLine()) {
+                    input = sc.nextLine();
+                    sb.append(input+" ");
+                }
+
+            } catch (FileNotFoundException fileNot) {}
+
+
+            Pattern patternT = Pattern.compile("Title", Pattern.CASE_INSENSITIVE);
+            Matcher matcherT = patternT.matcher(input);
+            String title = matcherT.toString();
+
+
+            Pattern patternA = Pattern.compile("Author", Pattern.CASE_INSENSITIVE);
+            Matcher matcherA = patternA.matcher(input);
+            String Author = matcherA.toString();
