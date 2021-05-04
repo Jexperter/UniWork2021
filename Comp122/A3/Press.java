@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.*;
 
@@ -29,19 +30,32 @@ public class Press {
             edition.put(a.getName(), n);
         }        
             
+        HashMap<String, LinkedList<Book>> shelf = new HashMap<String,LinkedList<Book>>();
+
+
+        for (int i = 0; i < filesList.length; i++) {
+            File file = filesList[i];
+            String author;
+            String title;
+            String content;
+            String all;
+
+            all = Files.readString(file.toPath());
+            Pattern patternT = Pattern.compile("Title: (.*)");
+            Matcher matcherT = patternT.matcher(all);
+            title = matcherT.toString();
+
+            Pattern patternA = Pattern.compile("Author: (.*)");
+            Matcher matcherA = patternA.matcher(all);
+            author = matcherA.toString();
+
+            Pattern patternC = Pattern.compile("");
+            Matcher matcherC = patternC.matcher(all);
+            content = matcherC.toString();
+              
             
-
-        //    Pattern patternC = Pattern.compile("", Pattern.CASE_INSENSITIVE);
-        //    Matcher matcherC = patternC.matcher(input);
-        //    String Content = matcherC.toString();
-
-        //    Pattern patternD = Pattern.compile("Author", Pattern.CASE_INSENSITIVE);
-        //    Matcher matcherA = patternA.matcher(input);
-        //   String Author = matcherA.toString();
-
-
-        }
-    }    
+        }   
+    }   
 
     //}
 
