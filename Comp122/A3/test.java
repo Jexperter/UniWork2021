@@ -7,9 +7,10 @@ public class test {
         System.out.println(a.toString());
 
         try {
-            Press b = new Press("/home/jash2002/uniWork/gitBackup/Comp122/A3/books", 2);
-            System.out.println(b.toString());
+            Press b = new Press("/home/jash2002/uniWork/gitBackup/Comp122/A3/books", 1);
+            System.out.println(b.print());
         } catch (IOException c) {}
+        }
+
         
     }
-}

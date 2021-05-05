@@ -1,12 +1,14 @@
-import jdk.nashorn.internal.ir.CaseNode;
 
 public class VendingMachine  {
     private Press supplier;
     private double locationFactor;
     private double cassette;
+    private double price;
 
     public VendingMachine(Press p, double f, int z) {
-
+        supplier = p;
+        locationFactor = f;
+        price = Book.getPages() * f; 
     }
 
     public double getCassette(){
@@ -27,8 +29,11 @@ public class VendingMachine  {
     }
 
     public double returnCoins(){
+        
         return cassette;
     }
 
-    public Book buyBook(String ID) {}
+    public Book buyBook(String ID) {
+
+    }
 }
