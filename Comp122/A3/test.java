@@ -8,7 +8,7 @@ public class test {
 
         try {
             Press b = new Press("/home/jash2002/uniWork/gitBackup/Comp122/A3/books", 1);
-            System.out.println(b.print());
+            System.out.println(b.print("11-0.txt"));
         } catch (IOException c) {}
         }
 
