@@ -14,9 +14,10 @@ import java.io.IOException;
 public class Press {
 
     private int booksPerEdition;
-    private HashMap<String, Integer> edition;
+    private Map<String, Integer> edition;
     private Map<String, Queue<Book>> shelf;
     private LinkedList<Book> books;
+    private int editionBook = 1;
 
     public Press(String p, int n) throws IOException {
         booksPerEdition = n;
@@ -24,16 +25,12 @@ public class Press {
         File filesList[] = directoryPath.listFiles();
         
         HashMap<String, Integer> edition = new HashMap<String, Integer>();
-        for (File a: filesList) {
-            edition.put(a.getName(), n);
-        }        
-            
         HashMap<String, LinkedList<Book>> shelf = new HashMap<String, LinkedList<Book>>();
 
-
-        for (File file: filesList) {
-            int i = 0;
-            while (i < n) { 
+        for (File a: filesList) {
+            edition.put(a.getName(), editionBook);
+            int i;
+            for (i = 1; i <= n; i++) {
                 String author;
                 String title;
                 String content;
@@ -53,13 +50,13 @@ public class Press {
                 content = matcherC.group(1);
 
                 LinkedList<Book> books = new LinkedList<Book>();
-                books.add(new Book(title, author, content, i++));
-            i++;        
+                books.add(new Book(title, author, content, editionBook));
+            i++;      
             }
-            shelf.put(file.getName(), books);
+            shelf.put(a.getName(), books);
+            editionBook++;
         } 
     }      
-    //}
 
    // public List<Book> print(String ID) {
 

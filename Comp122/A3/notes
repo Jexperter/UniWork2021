@@ -20,3 +20,6 @@ for (String key: edition.keySet()) {
             Pattern patternA = Pattern.compile("Author", Pattern.CASE_INSENSITIVE);
             Matcher matcherA = patternA.matcher(input);
             String Author = matcherA.toString();
+
+
+(?<=(.\\s/*/*/*/)(?s)(.*$))");
