@@ -35,7 +35,7 @@ public class Book {
     }
     
     public String toString() {
-        String str = String.format("Title: %s\n Author: %s\n Edition: %2d\n Pages: %2d", title, author, edition, getPages());
+        String str = String.format("Title: %s\nAuthor: %s\nEdition: %2d\nPages: %2d", title, author, edition, getPages());
         return str; 
     }
 

@@ -22,4 +22,31 @@ for (String key: edition.keySet()) {
             String Author = matcherA.toString();
 
 
-(?<=(.\\s/*/*/*/)(?s)(.*$))");
+(?<=(.\\s/*/*/*/)(?s)(.*$))");"(?<=(.\\s/*/*/*/)(?s)(.*$))"
+
+int i;
+            for (i = 0; i < n; i++) {
+                String author;
+                String title;
+                String content;
+                String all;
+
+                all = Files.readString(a.toPath());
+                Pattern patternT = Pattern.compile("Title: (.*)");
+                Matcher matcherT = patternT.matcher(all);1
+                title = matcherT.toString();
+
+                Pattern patternA = Pattern.compile("Author: (.*)");
+                Matcher matcherA = patternA.matcher(all);
+                author = matcherA.toString();
+
+                Pattern patternC = Pattern.compile("");
+                Matcher matcherC = patternC.matcher(all);
+                content = matcherC.toString();
+
+                books.add(new Book(title, author, content, editionBook));
+                
+            }
+            editionBook++;
+            shelf.put(a.getName(), books);
+        }

@@ -1,13 +1,16 @@
 
+import java.awt.print.Book;
 import java.io.File;
 import java.nio.file.*;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.regex.*;
 import java.io.IOException;
+import java.util.List;
 
 
 
@@ -18,10 +21,13 @@ public class Press {
     private Map<String, Queue<Book>> shelf;
     private LinkedList<Book> books;
     private int editionBook = 1;
+    private String path; 
+
 
     public Press(String p, int n) throws IOException {
         booksPerEdition = n;
-        File directoryPath = new File("p");
+        path = p;
+        File directoryPath = new File(path);
         File filesList[] = directoryPath.listFiles();
         
         HashMap<String, Integer> edition = new HashMap<String, Integer>();
@@ -29,38 +35,34 @@ public class Press {
 
         for (File a: filesList) {
             edition.put(a.getName(), editionBook);
-            int i;
-            for (i = 1; i <= n; i++) {
-                String author;
+            Scanner scanner = new Scanner(new File(a));
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
                 String title;
+                String author;
                 String content;
-                String all;
 
-                all = Files.readString(file.toPath());
-                Pattern patternT = Pattern.compile("Title: (.*)");
-                Matcher matcherT = patternT.matcher(all);
-                title = matcherT.group(1);
+                if (line.contains("Title:")) {
+                    title = line.split((" ?<=Title: ) ");
+                } else if (line.contains("Author:")) {
+                    author = line.split();
+                } else if (line.contains("START OF THE PROJECT")) {
+                    content = line.split();
+                }
 
-                Pattern patternA = Pattern.compile("Author: (.*)");
-                Matcher matcherA = patternA.matcher(all);
-                author = matcherA.group(1);
-
-                Pattern patternC = Pattern.compile("(?<=(.\\s/*/*/*/)(?s)(.*$))");
-                Matcher matcherC = patternC.matcher(all);
-                content = matcherC.group(1);
-
-                LinkedList<Book> books = new LinkedList<Book>();
-                books.add(new Book(title, author, content, editionBook));
-            i++;      
             }
-            shelf.put(a.getName(), books);
-            editionBook++;
-        } 
+        
+        
+        }     
     }      
 
-   // public List<Book> print(String ID) {
+    public List<Book> print(String ID) {
 
-   // }
+        List<Book> bookList = new ArrayList<Book>();
+
+
+        return bookList;
+    }
 
    // public List<String> getCatalogue() {
 
