@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class test {
@@ -6,12 +7,10 @@ public class test {
         Book a = new Book("helo", "helo", "helo", 1);
         System.out.println(a.toString());
 
-        try {
-            Press b = new Press("./books", 10);
-        } catch (IOException c) {}
-
-        //catch (IllegalAccessException z) {}
+        String title = "*** START OF THIS PROJECT GUTENBERG EBOOK ***";
+        System.out.println((title.substring(title.length())));
         
         
-    }
+    
+}
 }

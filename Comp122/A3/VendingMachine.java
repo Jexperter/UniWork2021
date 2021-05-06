@@ -8,20 +8,20 @@ public class VendingMachine  {
     public VendingMachine(Press p, double f, int z) {
         supplier = p;
         locationFactor = f;
-        price = Book.getPages() * f; 
+        price = (Book.getPages() * f); 
     }
 
     public double getCassette(){
        return cassette;
     }
 
-    public void insertCoin(double c)throws IllegalArgumentException {
+    public void insertCoin(double c) throws IllegalArgumentException {
         double[] values = {0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0, 2.0};
         int i;
 
         for (i = 0; i < values.length; i++) {
             if (c != values[i]) {
-                throw IllegalArgumentException;
+                throw new IllegalArgumentException();
             } else {
                 cassette = cassette + c;
             }
