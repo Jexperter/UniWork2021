@@ -15,7 +15,7 @@ public class VendingMachine  {
        return cassette;
     }
 
-    public void insertCoin(double c) {
+    public void insertCoin(double c)throws IllegalArgumentException {
         double[] values = {0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0, 2.0};
         int i;
 

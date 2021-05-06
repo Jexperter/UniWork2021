@@ -1,14 +1,17 @@
 
+
+import java.io.BufferedReader;
+import java.io.*;
 import java.io.File;
 import java.nio.file.*;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.regex.*;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -20,100 +23,99 @@ public class Press {
     private Map<String, Integer> edition;
     private Map<String, Queue<Book>> shelf;
     private String path; 
-    private Map<String, String> bookInfo;
-    private String[] bookPath;
-    private int bookEdition;
+    private String title;
+    private String author;
+    private String content;
+    private File bookPath[];
+    private int bookEdition = 1;
 
+    
     public Press(String p, int n) throws IOException {
+        //Constructor to assigment p to path and n to bookperedition
         booksPerEdition = n;
         path = p;
-        File directoryPath = new File(p);
-        bookPath = directoryPath.list();
+        
+        //creates a file array for all the file names
+        File directoryPath = new File(path);
+        bookPath = directoryPath.listFiles();
+        
         
         Map<String, Integer> edition = new HashMap<String, Integer>();
         Map<String, Queue<Book>> shelf = new HashMap<>();
-        bookEdition = 1;
+        
 
-        for (String a : bookPath) {
-            edition.put(a, bookEdition);
-            Scanner scanner = new Scanner(a);
-            boolean flag = false; 
-            boolean found = false;
+        for (File a : bookPath) {
             
-            String title;
-            String author;
-            String content = "";
+            edition.put(a.getName(), bookEdition);
+            String line;
+            boolean flag, found;
+            String content;
+                 
+            try(BufferedReader br = new BufferedReader(new FileReader(a))) {
+             flag = false;  
+             found = false;
+             content = "";
             
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-            
-                if (line.contains("Title:")) {
-                    title = line.substring(7);
-                    found = true;
-                    bookInfo.put("Title", title);
+                while ((line = br.readLine()) != null) {
                 
-                } if (line.contains("Author:")) {
-                    author = line.substring(8);
-                    bookInfo.put("Author", author);
-                
-                } if (line.contains("*** START")) {
-                    flag = true;
-                
-                } if (flag) {
-                    content += line;
-                    bookInfo.put("Content", content); 
-                }  
-            } 
-            if (!found) {
+                    if (line.contains("Title:")) {
+                        title = line.substring(7);
+                        found = true;
+                 
+                    } if (line.contains("Author:")) {
+                        author = line.substring(8);
+                    
+                    } if (line.contains("*** START")) {
+                        flag = true;
+                    
+                    } if (flag==true) {
+                        content += line;
+                    } if (found==false) {
+                        throw new IOException();
+                    }
+                }    
+            } catch (IOException ah) {
                 throw new IOException();
             }
-            LinkedList<Book> linkedList = new LinkedList<>();
-            
-            try {
-            
-                linkedList.addAll(print(a));
-                shelf.put(a, linkedList);
-            
-            } catch (IllegalAccessException error) {
-                throw error;
-            }    
-        }
-    }         
-
-    public List<Book> print(String ID) throws IllegalAccessException {
+            shelf.put(a.getName(), (Queue)print(a.getName()));
+            if (booksPerEdition == 0) {
+            print(a.getName());
+            booksPerEdition = n;    
+            }                         
+        }    
+    }    
+    private List<Book> print(String ID) {
 
         List<Book> bookList = new ArrayList<Book>();
-        File f = new File(path);
-        String[] pathname = f.list();
-        
-        for (String a: pathname) {
-            boolean found = false;
+        for (File a: bookPath) {
             int i = 0;
-            if (ID == a) {
+            boolean found = false;
+
+            if (ID == a.getName()) {
                 found = true;
-            } else {
-                throw new IllegalAccessException();
             }
             if (found) {
-                while (i < booksPerEdition) {
-                    bookList.add(new Book(bookInfo.get("Title"), bookInfo.get("Author"), bookInfo.get("Content"), bookEdition));
-                    i++;
+                for (i = 0; i < booksPerEdition; i++) {
+                    bookList.add(new Book(title, author, content, edition.get(a.getName())));
                 }
-            }
-        }    
+                bookEdition++;
+            } if (!found) {
+                throw new IllegalArgumentException();
+            }   
+        }  
         return bookList;
     }
 
     public List<String> getCatalogue() {
 
        List<String> catalogue = new ArrayList<String>();
-       for (String key: shelf.keySet()) {
+       for (String key: edition.keySet()) {
           catalogue.add(key);
         }
        return catalogue;
        }
 
- /*   public List<Book> request(String ID, int n) {
+  /*  public List<Book> request(String ID, int n) {
         
         
         

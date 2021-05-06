@@ -8,8 +8,9 @@ public class test {
 
         try {
             Press b = new Press("./books", 10);
-            System.out.println(b.toString());
         } catch (IOException c) {}
+
+        //catch (IllegalAccessException z) {}
         
         
     }
