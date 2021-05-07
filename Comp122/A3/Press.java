@@ -28,12 +28,12 @@ public class Press {
     private String content;
 
     /**
-     * This constructor sets up the shelf, by using the print method below. 
-     * @param p, this is the path for the files
+     * This constructor sets up the shelf, by using the print method below.It also sets up variables which are to be used in the vendingmachine section 
+     * @param p, this is the path for the files given by the main method 
      * @param n, this is the number of books which is avalable per edition 
      */
 
-    public Press(String p, int n) throws FileNotFoundException {
+    public Press(String p, int n) throws IOException {
         booksPerEdition = n;
         path = p;
 
@@ -73,8 +73,12 @@ public class Press {
                 }
                 if (found) {
                     content = content + " " + line;
-                }       
+                
+                } 
             }
+            if (!flag) {
+                throw new IOException();
+            }   
             content = content.substring(51 + title.length());
             edition.put(a.getName(), bookEdition);
             shelf.put(a.getName(), (LinkedList) print(a.getName()));
@@ -115,7 +119,7 @@ public class Press {
     }
 
     /**
-     * This returns a list of books the press can print
+     * This returns a list of books the press can print which is used in the vending machine class
      * @return, a list of books which is available from the shelf
      */
     public List<String> getCatalogue() {

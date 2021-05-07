@@ -27,14 +27,15 @@ public class VendingMachine  {
         locationFactor = l;
         size = z;
         shelf = new HashMap<>();
-        supplier = new Press(supplier.path, size);
-
+        try {
+            supplier = new Press(supplier.path, size);
+        } catch (IOException io) {}
         for (String a : supplier.getCatalogue()) {
             shelf.put(a, (LinkedList) supplier.request(a, z));
         }
-    }
+    }    
 
-    public double getCassette(){
+    public double getCassette() {
        return cassette;
     }
 
@@ -61,7 +62,7 @@ public class VendingMachine  {
     }
 
     /**
-     * This returns the total value
+     * This returns the total value of coins entered into the casette 
      * @return, the total value of the coins, and sets the cassette to 0
      */
     public double returnCoins(){
@@ -70,14 +71,13 @@ public class VendingMachine  {
     }
 
     /**
-     * 
+     * This method prints a book if a user has enough of money and prints more books if there is no long any books on the shelf 
      * @param ID, the string of the book, which the user would like 
      * @return book, this returns the book which the user wants
      * @throws CassetteException 
      * @throws IllegalArgumentException
      */
     public Book buyBook(String ID) throws CassetteException, IllegalArgumentException {
-        boolean found = false;
         price = (shelf.get(ID).peek().getPages()) * locationFactor;
 
         if (value > price) {
