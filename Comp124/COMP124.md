@@ -1,4 +1,4 @@
-# COMP124 - Revsion Notes
+# COMP124 - Revsion Notes :computer:
 
 ## Overview of system architecture:
 
@@ -11,7 +11,7 @@
     * Synchronised by a fast clock, 3GH clock = 3 billion cycles 
 
 #### The System Bus:
-    * Allows all components to talk to each other via a `"bus"`
+    * Allows all components to talk to each other via a **"bus"**
     * Point to point: quite expensive and complicated 
     * Split into: 
         * Address lines
@@ -29,9 +29,9 @@
 
 
 ### The CPU Fetch Cycle: 
-    | Very fast |
-    | Direct Access |
-    | Register ->  points to a memory address|
+    > Very fast 
+    > Direct Access
+    > Register ->  points to a memory address
 
 #### Registers:
     * Instruction Pointer -> points to the next point in memory 
@@ -53,6 +53,24 @@
         * xor, shift, and, or 
     * Control flow 
         * jmp, loop 
-                 
 
+### Assembly Programming:
+    EAX: Accumulator register 
+    EBX: Base register 
+    ECX: Counter register 
+    EDX: Data register 
+
+### Example of low level assembly code: 
+
+    ```Assembly 
+    mov eax, count1 
+    add eax, count2
+    sub eax, 10
+    mov num, eax 
+    num = count1 + count2 - 10
+    ```
+#### Flag registers:
+    * -s (positive, negative)
+    * -z (if result is zero)
+    * -c (carrying the zero flag)
 
