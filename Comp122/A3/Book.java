@@ -1,5 +1,7 @@
 
-
+/**
+ * This clas creates a blueprint for a book object
+ */
 public class Book {
 
     private String title;
@@ -34,6 +36,9 @@ public class Book {
        return (content.length() / 800);
     }
     
+    /**
+     * creates a more user friendly UI which is return at the end of this method 
+     */
     public String toString() {
         String str = String.format("Title: %s\nAuthor: %s\nEdition: %2d\nPages: %2d", title, author, edition, getPages());
         return str; 
