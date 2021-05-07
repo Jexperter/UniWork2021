@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Press {
 
-    private String path;
+    String path;
     private int booksPerEdition;
     private Map<String, Integer> edition;
     private Map<String, Queue<Book>> shelf;
@@ -29,7 +29,7 @@ public class Press {
 
     /**
      * This constructor sets up the shelf, by using the print method below. 
-     * @param p, this is tha path for the files
+     * @param p, this is the path for the files
      * @param n, this is the number of books which is avalable per edition 
      */
 
