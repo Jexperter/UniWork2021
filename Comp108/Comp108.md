@@ -146,7 +146,6 @@ Pop(S)
 top = top - 1
 S[top] = x
 ```
-
 ### Linked Lists:
 Traversing:
 ```
@@ -182,7 +181,41 @@ for (i = n downto 2) do
     i = i + 1    
 end        
 ```
-Time Complexity: O(n^2)    
-
+Time Complexity: O(n^2)   
+#### Selection Sort:
+```
+i = 1
+while (i <= n) do
+    begin 
+        loc = i
+        j = i + 1;
+        while (j <= n) do
+            begin
+                if (A[j] < A[loc]) then
+                    loc = j
+                j = j + 1
+            end
+        swap (A[i], A[loc])
+        i = i + 1
+end   
+```
+Time Complexity: O(n^2)  
+#### Insertion Sort: 
+```        
+for (i = 2 to n) do 
+    begin
+        key = A[i]
+        loc = 1
+        while (loc < I and A[loc] < key) do 
+            loc = loc + 1
+        for (j = 1 downto loc + 1) do 
+            A[j] = A[j-1]
+        A[loc] = key
+end 
+```
+Time Complexity: O(n^2)
+### Trees:
+A tree T = (V, E) consists of vertices V and a set of edges E such that for any pair of vertices U, there is exactly one path between u and v
+![tree]()
 
 
