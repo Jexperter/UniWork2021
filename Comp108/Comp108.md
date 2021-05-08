@@ -218,6 +218,44 @@ Time Complexity: O(n^2)
 A tree T = (V, E) consists of vertices V and a set of edges E such that for any pair of vertices U, there is exactly one path between u and v
 ![tree](https://github.com/jash2002/UniWork2021/blob/main/Comp108/images/2021-05-08%2018_22_53-Lecture%2017%20-%20Trees%20(Part%20I%20basics)_%20202021-COMP108%20-%20Data%20Structures%20and%20Algorit.png)
 
+* There is exactly one path between any two vertices 
+* T is connected and there is no cycle in T 
+* T is connected and removal of one edge disconnects T 
+* T is acyclic and adding one edge creatred a cycle 
+* T is connected and m = n - 1 (where n = |V|, m = |E|)
+
+#### Proof of Lemma:
+Base case: a tree with single vertex has no edges 
+induction step: p(n - 1) => p(n) for n > 1
+
+#### Rooted trees: 
+* Top vertex is called root
+* A vertex U may have some children , u is called the parent 
+* Degree of a vertex is the number of children it has 
+* A vertex with no children is called a leaf 
+
+#### Binary Trees:
+* A degree of two at most 
+* two subtrees 
+* 3 Ways to traverse a binary tree
+
+**preoder - (Vertex, Left, Right)**
+
+**inorder - (Left, Vertex, Right)**
+
+**postorder - (Left, Right, Vertex)** 
+
+### Graphs: 
+An undirected graph G = (V, E), each edge is an unordered pair of vertice.
+![undirected graph]()
+
+A directed graph G = (V, E), each edge is an ordered pair of vertices 
+![directed graph]()
+
+
+
+
+
 
 
 
