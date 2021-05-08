@@ -216,6 +216,8 @@ end
 Time Complexity: O(n^2)
 ### Trees:
 A tree T = (V, E) consists of vertices V and a set of edges E such that for any pair of vertices U, there is exactly one path between u and v
-![tree]()
+![tree](https://github.com/jash2002/UniWork2021/blob/main/Comp108/images/2021-05-08%2018_22_53-Lecture%2017%20-%20Trees%20(Part%20I%20basics)_%20202021-COMP108%20-%20Data%20Structures%20and%20Algorit.png)
+
+
 
 
