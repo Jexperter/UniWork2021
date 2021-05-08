@@ -246,11 +246,36 @@ induction step: p(n - 1) => p(n) for n > 1
 **postorder - (Left, Right, Vertex)** 
 
 ### Graphs: 
-An undirected graph G = (V, E), each edge is an unordered pair of vertice.
-![undirected graph]()
+An undirected graph G = (V, E), each edge is an unordered pair of vertice {c,b} = {b,c}.
+![undirected graph](https://github.com/jash2002/UniWork2021/blob/main/Comp108/images/2021-05-08%2018_56_19-Lecture%2020%20-%20Graphs%20(Part%20I%20%26%20II%2C%20basics%2C%20representation)_%20202021-COMP108%20-%20Data.png)
 
-A directed graph G = (V, E), each edge is an ordered pair of vertices 
-![directed graph]()
+A directed graph G = (V, E), each edge is an ordered pair of vertices {c,b} != {b,c} 
+![directed graph](https://github.com/jash2002/UniWork2021/blob/main/Comp108/images/directedgraph.png)
+
+A graph is simple if it doesn't have a self loop 
+
+A graph is multigraph if it has multiple connections to each node 
+
+In an undirected graph g, suppose that e = {u,v} is an edge of G 
+    * u and v are called endponts of e
+    * e is said to be incident with u and v
+    * e is said to connect u and v 
+    * The degree of a vertex is the number of connections coming from that node 
+
+#### Representation of undirected graphs:
+* An undirected graph can be represented by adjacent matrix, adjacent list, incidence list, incidence matrix 
+
+When we have a graph with n vertices we use a n x n matrix 
+
+#### Adjacent Matrix: 
+    * Matrix can only contain 0 or 1 
+    * If there is a connection between them then 1 
+    * if there is no connection then 0 
+
+#### Incidence Matrix: 
+    * Matrix can only contain 1 or 0 
+    * If number is connected by node then 1 else 0 
+
 
 
 
