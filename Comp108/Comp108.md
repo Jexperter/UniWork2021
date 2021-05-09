@@ -4,7 +4,7 @@
 What is an algorithm?
 A sequence of precise and concise instructions that guid to solve a specific problem in a finite amount of time 
 
-### Example: Comput the nth power:
+### Example: Compute the nth power:
 1. input: number x and non negative value n 
 2. set p to 1
 3. repeat while p = px
@@ -26,13 +26,13 @@ When trying to work out what the code does, add a variable such as n = 5 then wo
 
 ## Algorithm Efficiency:
 Why does it matter:
-    * Speeds up the computation
-    * efficency matters 
-    * Demands a great increase 
+* Speeds up the computation
+* efficency matters 
+* Demands a great increase 
 
 Time:  1. increased speed of computation 
-    * run  2. Waste of time to cheat 
-    * measure 
+* run  2. Waste of time to cheat 
+* measure 
 
 Efficiency (Questions):
 If we doubled the input size, how long would it take?
@@ -56,16 +56,15 @@ Dynamic Data:
     Data may grow or change over time
 
 Operations
-    
-    * Search    
-    * Insert 
-    * Delete    
-    * Maximum
+* Search    
+* Insert 
+* Delete    
+* Maximum
 
 ### Arrays: 
-    * has an index
-    * size n where A[0, N]
-    * out of bounds if out of range 
+* has an index
+* size n where A[0, N]
+* out of bounds if out of range 
 ```
 sum = 0, i = 1
 while (i <= n) do 
@@ -77,9 +76,9 @@ output sum
 ```
 
 #### Sequential Search:
-    * input: N numbers into an array 
-    * input: if key is in array 
-    * algorithm checks for key 
+* input: N numbers into an array 
+* input: if key is in array 
+* algorithm checks for key 
 
 ```
 i = 0
@@ -217,7 +216,6 @@ Time Complexity: O(n^2)
 ### Trees:
 A tree T = (V, E) consists of vertices V and a set of edges E such that for any pair of vertices U, there is exactly one path between u and v
 ![tree](https://github.com/jash2002/UniWork2021/blob/main/Comp108/images/2021-05-08%2018_22_53-Lecture%2017%20-%20Trees%20(Part%20I%20basics)_%20202021-COMP108%20-%20Data%20Structures%20and%20Algorit.png)
-
 * There is exactly one path between any two vertices 
 * T is connected and there is no cycle in T 
 * T is connected and removal of one edge disconnects T 
@@ -257,10 +255,10 @@ A graph is simple if it doesn't have a self loop
 A graph is multigraph if it has multiple connections to each node 
 
 In an undirected graph g, suppose that e = {u,v} is an edge of G 
-    * u and v are called endponts of e
-    * e is said to be incident with u and v
-    * e is said to connect u and v 
-    * The degree of a vertex is the number of connections coming from that node 
+* u and v are called endponts of e
+* e is said to be incident with u and v
+* e is said to connect u and v 
+* The degree of a vertex is the number of connections coming from that node 
 
 #### Representation of undirected graphs:
 * An undirected graph can be represented by adjacent matrix, adjacent list, incidence list, incidence matrix 
@@ -268,13 +266,124 @@ In an undirected graph g, suppose that e = {u,v} is an edge of G
 When we have a graph with n vertices we use a n x n matrix 
 
 #### Adjacent Matrix: 
-    * Matrix can only contain 0 or 1 
-    * If there is a connection between them then 1 
-    * if there is no connection then 0 
+* Matrix can only contain 0 or 1 
+* If there is a connection between them then 1 
+* if there is no connection then 0 
 
 #### Incidence Matrix: 
-    * Matrix can only contain 1 or 0 
-    * If number is connected by node then 1 else 0 
+* Matrix can only contain 1 or 0 
+* If number is connected by node then 1 else 0 
+
+#### Undirected graph - paths and circuits:
+![a path](https://github.com/jash2002/UniWork2021/blob/main/Comp108/images/graph.png)
+if u = v then the path is called a cycle 
+
+#### Euler Circuit 
+* A simple circuit visits each edge at most once 
+* An euler circuit is a circuit visiting every edge exactly once 
+
+A trivial condition: 
+* The graph must be connected 
+* find a circuit in the graph 
+* expand a node in the graph 
+
+### Greedy Algorithm:
+* input: Given n items with weights and values and a knapsack with capacity W 
+* output: Find the most valuebale subset of items that can fit into the knapsack 
+* Applications: A transport plane is to deliver the most valuable items  
+
+Exhaustive algorithm: 
+* Try every subset of n items 
+* compute total weight of subset 
+* compute total value 
+
+#### Minimun Spanning Tree:
+Given an undirected graph G 
+
+* The dges are labelled by weight 
+
+Spanning tree of G 
+
+* Contains all vertices in G 
+
+Minimum spanning tree:
+
+* Tree with lowest weight 
+
+#### Kruskal Algorithm: 
+* Look at the whole graph, find edge with minimum weight 
+* Find 2nd minimum weight edge 
+* keep finding the minimum weight 
+* continue until there is a cycle 
+Time Complexity: O(mlogm)
+
+#### Single Source Path: 
+Given a particular vertex called the source 
+
+* Find the shortest path from the source to all other vertices(smallest weight )
+
+#### Dijkstra Algorithm:
+* chose an edge adjacent to any of the chosen vertices such that cost of path to source is minimum
+
+
+### Divide and Conquer Algorithms: 
+[4 6 3 2 8 7 5 1]
+
+* Divide into two groups 
+
+[4 6 3 2] [8 7 5 1]
+
+[4 6] [3 2] [8 7] [5 1]
+
+*Add the two numbers and keep going 
+
+Time complexity: O(n)
+
+#### Merge Sort Algorithm:
+* Divide conquer 
+* divide sequence into two halves 
+* sort the two halves
+* merge the sorted paths 
+
+```
+assume n is a power of 2
+Mergesort(A[i..n]) 
+if n > 1 then 
+    begin 
+        copy A[1..n/2] to B[1..n/2]
+        copy A[(n/2+1)..n] to C[1..n/2]
+    merge(B)
+    merge(C)
+    merge(A, B, C)
+end
+```
+Each node takes O(r) time when there is r integers 
+Each level takes O(n) time because of total numbers inside is n 
+There are O(log n) levels 
+Overall: O(n log n) time 
+
+#### Fibonacci Numbers:
+![fib](https://github.com/jash2002/UniWork2021/blob/main/Comp108/images/fib.png)
+
+### Dynamic Programming:
+* Add the children to get the parent number 
+8 Time complexity: O(n)
+
+#### Assembly Line Porblem
+![assembly line](https://github.com/jash2002/UniWork2021/blob/main/Comp108/images/ass.png)
+Lines represent transfer time = cost
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
