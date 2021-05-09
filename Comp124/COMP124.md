@@ -162,5 +162,5 @@ System on:
 1. kernel ceates system processes 
 1. user active 
 
-## Oprating System Pyramid:
+## Operating System Pyramid:
 ![pyramid](https)
