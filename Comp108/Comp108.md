@@ -369,7 +369,7 @@ Overall: O(n log n) time
 * Add the children to get the parent number 
 8 Time complexity: O(n)
 
-#### Assembly Line Porblem
+#### Assembly Line Problem
 ![assembly line](https://github.com/jash2002/UniWork2021/blob/main/Comp108/images/ass.png)
 Lines represent transfer time = cost
 

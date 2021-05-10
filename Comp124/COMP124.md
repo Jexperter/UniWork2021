@@ -162,6 +162,7 @@ System on:
 1. kernel ceates system processes 
 1. user active 
 
+<<<<<<< HEAD
 ## Oprating System Pyramid:
 ![pyramid]()
 
@@ -250,3 +251,7 @@ Zombies and Orphans:
 If the parent doesn't know that their child has died therefore the child is a **zombie**
 
 If the parent dies before the child, the child is then an **orphan**
+=======
+## Operating System Pyramid:
+![pyramid](https)
+>>>>>>> ce7010a113694bc3d1f665c050219edd15c76367
