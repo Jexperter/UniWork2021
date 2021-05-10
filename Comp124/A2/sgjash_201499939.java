@@ -8,23 +8,23 @@
 
         public synchronized void insert() {
             while (store >= 5) {
-                System.out.println("Shelf is full (Waiting...)"); 
                 try {
+                    System.out.println("Shelf is full (Waiting...)"); 
                     wait();
                 } catch (InterruptedException e) {}
             }
-            store++;
+            store+=1;
             notify();
         }
 
         public synchronized void remove() {
-            while (store <= 0) {
-                System.out.println("Shelf is empty (Waiting...)");
+            while (store == 0) {
                 try {
+                    System.out.println("Shelf is empty (Waiting...)");
                     wait();
                 } catch (InterruptedException a) {}   
             }
-            store--;
+            store-=1;
             notify();
         }
     }
@@ -34,7 +34,7 @@
         private Buffer a;
         private int x;
         private String name;
-        int potCount = 1;
+        int potCount = 0;
 
         //Constructor to allow for certain variables to be entered, allows for code reuse 
         public producer(Buffer a, int x, String name) {
@@ -47,7 +47,7 @@
         @Override
         //This method implements the runnable interface which allows for threads to be executed 
         public void run() {            
-            while (potCount < 11) {
+            while (potCount < 10) {
                 System.out.printf("%s has started to make a pot\n", name);
                 try {
                     //Simulates time taken for producer to create a pot
@@ -55,8 +55,9 @@
                 } catch (InterruptedException e) {}
                 //Inserts into the shelf using the buffer 
                 a.insert();
-                System.out.printf("%s has added a pot number %2d to the shelf\n", name, potCount);
                 potCount++;
+                System.out.printf("%s has added a pot number %2d to the shelf. Shelf : %2d\n", name, potCount, a.store);
+                
             }
         }
     }
@@ -72,11 +73,11 @@
         }
 
         @Override
-        //This 
+        //This method removes a pot from the shelf
         public void run() {
-            potCount = 1;
+            potCount = 0;
             //Loops until all pots are packed 
-            while (potCount < 21) {
+            while (potCount <= 19) {
                 System.out.println("Consumer1 is ready to pack");
                 try {
                     //Simulates time taken for consumer to pack a pot
@@ -84,8 +85,9 @@
                 } catch (InterruptedException e) {}
                 //removes from the shelf using the buffer 
                 c.remove();
-                System.out.printf("Consumer1 has packed a pot, there is now %2d pot(s) packed\n", potCount);    
                 potCount++;
+                System.out.printf("Consumer1 has packed a pot, there is now %2d pot(s) packed. Shelf : %2d\n", potCount, c.store);    
+                
             }
         }    
     }
@@ -102,7 +104,7 @@
             consumer c1 = new consumer(shelf, 400);
             producer p2 = new producer(shelf, 500, "Producer2");
             p1.start();
-            c1.start();
             p2.start();
+            c1.start();
         }
     }
