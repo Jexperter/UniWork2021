@@ -163,4 +163,90 @@ System on:
 1. user active 
 
 ## Oprating System Pyramid:
-![pyramid](https)
+![pyramid]()
+
+Each manager:
+* Monitors
+* Enforces polices 
+* Allocates resources 
+* de-allocate resources 
+
+### Subsystem managers:
+Memory Manger:
+* Protects the space of memeory which is used by the OS 
+* Validates the memory 
+* allocates areas of memeory not in use 
+* keeps track of user input and actions 
+* De-allocate sections if needed
+
+Processor Manager:
+* Creates processes 
+* performs initisalisation 
+* checks status of processes 
+* assigns to processes to CPU 
+* handles termination of processes 
+* manages queues
+* handles i/o 
+* provide stack memory
+
+Device Manager:
+* monitors every device connected to the computer 
+* allocates system drivers 
+* deals with requests 
+* performs communication from one device to another 
+
+File Manager:
+* keeps track of files 
+* manages the file location
+* deals with file functions 
+
+Network Manager:
+* printer, disks 
+* network stacks 
+
+### Processes:
+The OS maintains a **Processor Control Block**
+
+PCB conatins:
+    
+    * unique process ID 
+    
+    * userID 
+    
+    * process state 
+    
+    * position in memory
+    
+    * time used 
+    
+    * register values 
+    
+    * resources allocated 
+
+#### Process States:
+
+Running: only one process can be executing at a given time and may be interupted if no I/O calls are made 
+
+Ready: refers to a process that is able to run, but does not have CPU 
+
+Waiting: refers to the process that is not able to continue even with CPU 
+
+#### Process Creation:
+
+processes are **spawned**
+
+The original process is called the parent and the new process is called the child
+
+Unix Example: 
+
+Exec() system call allows one process to execute another 
+
+fork() creates a new process 
+
+wait() suspends parent until child terminates
+
+Zombies and Orphans:
+
+If the parent doesn't know that their child has died therefore the child is a **zombie**
+
+If the parent dies before the child, the child is then an **orphan**

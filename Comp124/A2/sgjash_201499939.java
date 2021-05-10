@@ -7,8 +7,8 @@
         public volatile int store = 0;
 
         public synchronized void insert() {
-            while (store != 0) {
-                System.out.printf("Shelf has %2d pot(s) (Waiting to insert...)\n", store);
+            while (store >= 5) {
+                System.out.println("Shelf is full (Waiting...)"); 
                 try {
                     wait();
                 } catch (InterruptedException e) {}
@@ -18,11 +18,11 @@
         }
 
         public synchronized void remove() {
-            while (store < 6) {
+            while (store <= 0) {
+                System.out.println("Shelf is empty (Waiting...)");
                 try {
-                    System.out.printf("Shelf has %2d pot(s) (Waiting to remove...)\n", store);
                     wait();
-                } catch (InterruptedException a) {}
+                } catch (InterruptedException a) {}   
             }
             store--;
             notify();
@@ -44,18 +44,19 @@
 
         }
 
-
+        @Override
+        //This method implements the runnable interface which allows for threads to be executed 
         public void run() {            
             while (potCount < 11) {
                 System.out.printf("%s has started to make a pot\n", name);
-                while (a.store < 6) {
                 try {
+                    //Simulates time taken for producer to create a pot
                     sleep(x);
                 } catch (InterruptedException e) {}
+                //Inserts into the shelf using the buffer 
                 a.insert();
-                System.out.printf("%s has added a pot number%2d to the shelf\n", name, potCount);
+                System.out.printf("%s has added a pot number %2d to the shelf\n", name, potCount);
                 potCount++;
-                }
             }
         }
     }
@@ -70,25 +71,29 @@
             this.x = x;
         }
 
+        @Override
+        //This 
         public void run() {
-            potCount = 0;
-            System.out.println("Consumer1 is ready to pack");
-            while (c.store != 0) {
+            potCount = 1;
+            //Loops until all pots are packed 
+            while (potCount < 21) {
+                System.out.println("Consumer1 is ready to pack");
                 try {
+                    //Simulates time taken for consumer to pack a pot
                     sleep(x);
                 } catch (InterruptedException e) {}
+                //removes from the shelf using the buffer 
                 c.remove();
                 System.out.printf("Consumer1 has packed a pot, there is now %2d pot(s) packed\n", potCount);    
+                potCount++;
             }
-            potCount++;
         }    
     }
 
-    //Main program
+    //Main program which instantiates the preceading classes and runs them using the extended thread class 
     public class sgjash_201499939 {
 
         public static void main(String args[]) {
-            System.out.println("Starting main thread...");
             System.out.println("P1 has started");
             System.out.println("P2 has started");
             System.out.println("C1 has started");
@@ -99,6 +104,5 @@
             p1.start();
             c1.start();
             p2.start();
-            System.out.println("Ending main thread...");
         }
     }
